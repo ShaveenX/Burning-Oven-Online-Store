@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burning Oven | Premium Computer Store</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg" href="image/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<script src="script.js"></script>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
+                    <div class="p-2 bg-fire-600 rounded-lg fire-glow">
+                        <i data-lucide="flame" class="w-6 h-6 text-white fill-white"></i>
+                    </div>
+                    <span class="text-2xl font-display font-bold tracking-tighter">
+                        BURNING <span class="text-fire-500">OVEN</span>
+                    </span>
+                </div>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <button onclick="showPage('home')" class="nav-link text-sm font-medium text-fire-500">Home</button>
+                    <button onclick="showPage('products')" class="nav-link text-sm font-medium text-zinc-400 hover:text-fire-500">The Armory</button>
+                    <button class="text-sm font-medium text-zinc-400 hover:text-fire-500">Custom Builds</button>
+                    <button class="text-sm font-medium text-zinc-400 hover:text-fire-500">Support</button>
+                </div>
+
+                <div class="flex items-center gap-5">
+                    <i data-lucide="search" class="w-5 h-5 text-zinc-400 hover:text-fire-500 cursor-pointer"></i>
+                    <div class="relative cursor-pointer group" onclick="toggleCart()">
+                        <i data-lucide="shopping-cart" class="w-5 h-5 text-zinc-400 hover:text-fire-500"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-fire-600 text-[10px] font-bold px-1.5 py-0.5 rounded-full text-white">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/60 z-[60] hidden backdrop-blur-sm" onclick="toggleCart()"></div>
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full max-w-md bg-zinc-950 z-[70] cart-sidebar border-l border-zinc-800 flex flex-col">
+        <div class="p-6 border-b border-zinc-800 flex justify-between items-center">
+            <h2 class="text-xl font-bold flex items-center gap-2">
+                <i data-lucide="shopping-bag" class="text-fire-500"></i>
+                YOUR CART
+            </h2>
+            <button onclick="toggleCart()" class="p-2 hover:bg-zinc-900 rounded-full transition-colors">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+            <!-- Cart items injected here -->
+        </div>
+        <div class="p-6 border-t border-zinc-800 bg-zinc-900/50">
+            <div class="flex justify-between mb-4">
+                <span class="text-zinc-400">Subtotal</span>
+                <span id="cart-total" class="text-xl font-bold text-white">$0.00</span>
+            </div>
+            <button class="w-full py-4 bg-fire-600 hover:bg-fire-700 text-white font-bold rounded-xl fire-glow transition-all">
+                PROCEED TO CHECKOUT
+            </button>
+        </div>
+    </div>
+
+    <!-- Pages Container -->
+    <main class="pt-20">
+        
+        <!-- Home Page -->
+        <div id="page-home" class="page">
+            <!-- Hero Section -->
+            <section class="relative h-[85vh] w-full overflow-hidden">
+                <div id="hero-slider" class="h-full">
+                    <!-- Slide 1 -->
+                    <div class="hero-slide active h-full relative">
+                        <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover" referrerPolicy="no-referrer">
+                        <div class="absolute inset-0 bg-gradient-to-r from-fire-600/40 to-zinc-950/90"></div>
+                        <div class="absolute inset-0 flex flex-col justify-center max-w-7xl mx-auto px-8">
+                            <span class="inline-block px-3 py-1 bg-fire-600 text-white text-xs font-bold rounded mb-4 w-fit">NEW ARRIVALS</span>
+                            <h1 class="text-5xl md:text-7xl font-display font-extrabold text-white mb-6">IGNITE YOUR <span class="text-fire-500">POTENTIAL</span></h1>
+                            <p class="text-lg text-zinc-300 mb-8 max-w-lg">Experience the raw power of the Inferno X-Series. Built for the next generation of gaming.</p>
+                            <button onclick="showPage('products')" class="px-8 py-4 bg-fire-600 hover:bg-fire-700 text-white font-bold rounded-lg w-fit fire-glow transition-all">SHOP NOW</button>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="hero-slide h-full relative">
+                        <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover" referrerPolicy="no-referrer">
+                        <div class="absolute inset-0 bg-gradient-to-r from-orange-600/40 to-zinc-950/90"></div>
+                        <div class="absolute inset-0 flex flex-col justify-center max-w-7xl mx-auto px-8">
+                            <span class="inline-block px-3 py-1 bg-fire-600 text-white text-xs font-bold rounded mb-4 w-fit">CUSTOM BUILDS</span>
+                            <h1 class="text-5xl md:text-7xl font-display font-extrabold text-white mb-6">MASTER THE <span class="text-fire-500">FLAME</span></h1>
+                            <p class="text-lg text-zinc-300 mb-8 max-w-lg">Liquid-cooled perfection tailored to your workflow. The ultimate workstation awaits.</p>
+                            <button class="px-8 py-4 bg-fire-600 hover:bg-fire-700 text-white font-bold rounded-lg w-fit fire-glow transition-all">BUILD YOURS</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slider Controls -->
+                <div class="absolute bottom-10 right-10 flex gap-4">
+                    <button onclick="prevSlide()" class="p-3 bg-zinc-900/50 hover:bg-fire-600 text-white rounded-full border border-white/10 transition-all"><i data-lucide="chevron-left"></i></button>
+                    <button onclick="nextSlide()" class="p-3 bg-zinc-900/50 hover:bg-fire-600 text-white rounded-full border border-white/10 transition-all"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <section class="max-w-7xl mx-auto px-8 py-24">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-display font-bold mb-4 tracking-tight">EXPLORE THE ARMORY</h2>
+                    <p class="text-zinc-500 max-w-xl mx-auto">Discover high-performance hardware categorized for every type of creator and gamer.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div onclick="filterByCategory('Laptops')" class="glass-card p-8 rounded-3xl flex flex-col items-center gap-4 cursor-pointer hover:bg-fire-600/10 transition-all group">
+                        <div class="p-4 bg-zinc-900 rounded-2xl text-fire-500 group-hover:scale-110 transition-transform"><i data-lucide="laptop"></i></div>
+                        <span class="font-bold">Laptops</span>
+                    </div>
+                    <div onclick="filterByCategory('PC')" class="glass-card p-8 rounded-3xl flex flex-col items-center gap-4 cursor-pointer hover:bg-fire-600/10 transition-all group">
+                        <div class="p-4 bg-zinc-900 rounded-2xl text-fire-500 group-hover:scale-110 transition-transform"><i data-lucide="cpu"></i></div>
+                        <span class="font-bold">PC</span>
+                    </div>
+                    <div onclick="filterByCategory('Monitors')" class="glass-card p-8 rounded-3xl flex flex-col items-center gap-4 cursor-pointer hover:bg-fire-600/10 transition-all group">
+                        <div class="p-4 bg-zinc-900 rounded-2xl text-fire-500 group-hover:scale-110 transition-transform"><i data-lucide="monitor"></i></div>
+                        <span class="font-bold">Monitors</span>
+                    </div>
+                    <div onclick="filterByCategory('Accessories')" class="glass-card p-8 rounded-3xl flex flex-col items-center gap-4 cursor-pointer hover:bg-fire-600/10 transition-all group">
+                        <div class="p-4 bg-zinc-900 rounded-2xl text-fire-500 group-hover:scale-110 transition-transform"><i data-lucide="mouse-pointer-2"></i></div>
+                        <span class="font-bold">Accessories</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Gear -->
+            <section class="bg-zinc-900/30 py-24">
+                <div class="max-w-7xl mx-auto px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                        <div>
+                            <h2 class="text-4xl font-display font-bold mb-4 tracking-tight">FEATURED GEAR</h2>
+                            <p class="text-zinc-500">Hand-picked performance hardware that's currently trending.</p>
+                        </div>
+                        <button onclick="showPage('products')" class="text-fire-500 font-bold flex items-center gap-2 hover:translate-x-1 transition-transform">
+                            View All Armory <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div id="featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Featured products injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blazing Advantages -->
+            <section class="max-w-7xl mx-auto px-8 py-24">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 bg-fire-600/10 rounded-2xl flex items-center justify-center text-fire-500 mb-6">
+                            <i data-lucide="zap" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Blazing Speed</h3>
+                        <p class="text-zinc-500">Every component we sell is tested for peak performance and maximum throughput.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 bg-fire-600/10 rounded-2xl flex items-center justify-center text-fire-500 mb-6">
+                            <i data-lucide="shield-check" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Forged Reliability</h3>
+                        <p class="text-zinc-500">Built to withstand the heat. Our custom builds come with a 3-year "Ironclad" warranty.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 bg-fire-600/10 rounded-2xl flex items-center justify-center text-fire-500 mb-6">
+                            <i data-lucide="headset" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Expert Support</h3>
+                        <p class="text-zinc-500">Our engineers are available 24/7 to help you troubleshoot and optimize your rig.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Customer Heat Check (Testimonials) -->
+            <section class="bg-zinc-900/30 py-24">
+                <div class="max-w-7xl mx-auto px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-display font-bold mb-4 tracking-tight">CUSTOMER HEAT CHECK</h2>
+                        <p class="text-zinc-500">See what our community of creators and gamers has to say.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="glass-card p-8 rounded-3xl relative">
+                            <i data-lucide="quote" class="absolute top-6 right-8 w-12 h-12 text-fire-600/10"></i>
+                            <div class="flex gap-1 text-yellow-500 mb-6">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-zinc-300 mb-8 italic">"The Inferno X-1 is a beast. I've never seen a laptop handle 4K rendering this smoothly. Burning Oven is the real deal."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-zinc-800 rounded-full overflow-hidden">
+                                    <img src="https://i.pravatar.cc/150?u=alex" alt="Alex" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Alex Rivera</h4>
+                                    <span class="text-xs text-zinc-500">Motion Designer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-8 rounded-3xl relative">
+                            <i data-lucide="quote" class="absolute top-6 right-8 w-12 h-12 text-fire-600/10"></i>
+                            <div class="flex gap-1 text-yellow-500 mb-6">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-zinc-300 mb-8 italic">"Custom loop build was flawless. The attention to detail in the cable management is something you just don't see elsewhere."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-zinc-800 rounded-full overflow-hidden">
+                                    <img src="https://i.pravatar.cc/150?u=sarah" alt="Sarah" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Sarah Chen</h4>
+                                    <span class="text-xs text-zinc-500">E-sports Pro</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-8 rounded-3xl relative">
+                            <i data-lucide="quote" class="absolute top-6 right-8 w-12 h-12 text-fire-600/10"></i>
+                            <div class="flex gap-1 text-yellow-500 mb-6">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-zinc-300 mb-8 italic">"Fastest shipping I've ever experienced for a PC. Arrived in perfect condition and ready to blaze right out of the box."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-zinc-800 rounded-full overflow-hidden">
+                                    <img src="https://i.pravatar.cc/150?u=mike" alt="Mike" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Mike Thompson</h4>
+                                    <span class="text-xs text-zinc-500">Software Engineer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest from the Forge (News/Blog) -->
+            <section class="max-w-7xl mx-auto px-8 py-24">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                    <div>
+                        <h2 class="text-4xl font-display font-bold mb-4 tracking-tight">LATEST FROM THE FORGE</h2>
+                        <p class="text-zinc-500">Stay updated with the latest hardware news and optimization guides.</p>
+                    </div>
+                    <button class="text-fire-500 font-bold flex items-center gap-2 hover:translate-x-1 transition-transform">
+                        Read All News <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-card rounded-3xl overflow-hidden group cursor-pointer">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1000&auto=format&fit=crop" alt="CPU" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-xs font-bold text-fire-500 uppercase tracking-widest mb-4 block">Hardware Guide</span>
+                            <h3 class="text-2xl font-bold mb-4 group-hover:text-fire-400 transition-colors">Optimizing your RTX 50-Series for 8K Gaming</h3>
+                            <p class="text-zinc-500 mb-6">Learn how to squeeze every last frame out of your new GPU with our expert tuning guide...</p>
+                            <div class="flex items-center gap-4 text-xs text-zinc-600">
+                                <span>March 28, 2026</span>
+                                <span class="w-1 h-1 bg-zinc-800 rounded-full"></span>
+                                <span>8 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-3xl overflow-hidden group cursor-pointer">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?q=80&w=1000&auto=format&fit=crop" alt="Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-8">
+                            <span class="text-xs font-bold text-fire-500 uppercase tracking-widest mb-4 block">Community</span>
+                            <h3 class="text-2xl font-bold mb-4 group-hover:text-fire-400 transition-colors">The Best Minimalist Setups of 2026</h3>
+                            <p class="text-zinc-500 mb-6">We showcase the most aesthetic and functional setups from our Burning Oven community...</p>
+                            <div class="flex items-center gap-4 text-xs text-zinc-600">
+                                <span>March 24, 2026</span>
+                                <span class="w-1 h-1 bg-zinc-800 rounded-full"></span>
+                                <span>5 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter -->
+            <section class="max-w-7xl mx-auto px-8 py-24">
+                <div class="fire-gradient rounded-[2rem] p-12 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-48 -mt-48 blur-3xl"></div>
+                    <div class="relative z-10 max-w-2xl">
+                        <h2 class="text-4xl md:text-5xl font-display font-black text-white mb-6 leading-tight">JOIN THE INFERNO</h2>
+                        <p class="text-white/80 text-lg mb-10">Get exclusive access to new releases, custom build tips, and blazing hot discounts delivered to your inbox.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30">
+                            <button class="px-8 py-4 bg-white text-fire-600 font-bold rounded-xl hover:bg-zinc-100 transition-colors">SUBSCRIBE</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Products Page -->
+        <div id="page-products" class="page hidden">
+            <div class="max-w-7xl mx-auto px-8 py-12">
+                <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-12">
+                    <div>
+                        <h1 class="text-5xl font-display font-extrabold mb-4">THE ARMORY</h1>
+                        <p class="text-zinc-500">Equip yourself with the best hardware on the market.</p>
+                    </div>
+                    <div class="relative w-full md:w-80">
+                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500"></i>
+                        <input type="text" id="product-search" oninput="handleSearch()" placeholder="Search products..." class="w-full pl-12 pr-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl focus:outline-none focus:border-fire-500 transition-colors">
+                    </div>
+                </div>
+
+                <!-- Category Filter Tabs -->
+                <div class="flex gap-3 overflow-x-auto pb-6 mb-8 no-scrollbar">
+                    <button onclick="filterByCategory('All')" class="cat-tab px-6 py-3 rounded-full font-bold bg-fire-600 text-white fire-glow whitespace-nowrap">All Gear</button>
+                    <button onclick="filterByCategory('Laptops')" class="cat-tab px-6 py-3 rounded-full font-bold bg-zinc-900 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">Laptops</button>
+                    <button onclick="filterByCategory('PC')" class="cat-tab px-6 py-3 rounded-full font-bold bg-zinc-900 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">PC</button>
+                    <button onclick="filterByCategory('Monitors')" class="cat-tab px-6 py-3 rounded-full font-bold bg-zinc-900 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">Monitors</button>
+                    <button onclick="filterByCategory('Accessories')" class="cat-tab px-6 py-3 rounded-full font-bold bg-zinc-900 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">Accessories</button>
+                </div>
+
+                <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Products injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Page -->
+        <div id="page-detail" class="page hidden">
+            <div id="product-detail-content" class="max-w-7xl mx-auto px-8 py-12">
+                <!-- Detail content injected here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 border-t border-zinc-900 pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="p-2 bg-fire-600 rounded-lg"><i data-lucide="flame" class="w-5 h-5 text-white fill-white"></i></div>
+                        <span class="text-xl font-display font-bold tracking-tighter">BURNING <span class="text-fire-500">OVEN</span></span>
+                    </div>
+                    <p class="text-zinc-500 leading-relaxed">Premium computer hardware for the elite. We don't just sell parts, we build legends.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-white uppercase tracking-widest text-xs">Shop</h4>
+                    <ul class="space-y-4 text-zinc-500 text-sm">
+                        <li><button onclick="filterByCategory('Laptops')" class="hover:text-fire-500 transition-colors">Laptops</button></li>
+                        <li><button onclick="filterByCategory('PC')" class="hover:text-fire-500 transition-colors">Custom PCs</button></li>
+                        <li><button onclick="filterByCategory('Accessories')" class="hover:text-fire-500 transition-colors">Accessories</button></li>
+                        <li><button onclick="showPage('products')" class="hover:text-fire-500 transition-colors">New Releases</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-white uppercase tracking-widest text-xs">Support</h4>
+                    <ul class="space-y-4 text-zinc-500 text-sm">
+                        <li><a href="#" class="hover:text-fire-500 transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-fire-500 transition-colors">Warranty Info</a></li>
+                        <li><a href="#" class="hover:text-fire-500 transition-colors">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-fire-500 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+<h4 class="font-bold mb-6 text-white uppercase tracking-widest text-xs">Connect</h4>
+
+<div class="flex gap-4">
+
+    <!-- Facebook -->
+    <a href="#" class="p-2 bg-zinc-900 rounded-lg text-zinc-400 hover:text-fire-500">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
+
+    <!-- Instagram -->
+    <a href="#" class="p-2 bg-zinc-900 rounded-lg text-zinc-400 hover:text-fire-500">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+    <!-- GitHub -->
+    <a href="#" class="p-2 bg-zinc-900 rounded-lg text-zinc-400 hover:text-fire-500">
+        <i class="fa-brands fa-github"></i>
+    </a>
+
+    <!-- Portfolio -->
+    <a href="#" class="p-2 bg-zinc-900 rounded-lg text-zinc-400 hover:text-fire-500">
+        <i class="fa-solid fa-globe"></i>
+    </a>
+
+</div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-4 text-zinc-600 text-xs">
+                <p>© 2026 BURNING OVEN. All rights reserved. | Designed by: <a href="https://shaveensena.myportfolio.com/">Shaveen Senanayaka</a></li></ul>
+                </p>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-zinc-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-zinc-400">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
